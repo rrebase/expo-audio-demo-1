@@ -1,0 +1,28 @@
+{
+  "name": "audio-playground",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "xcode:quit": "osascript -e 'tell application \"Xcode\" to quit'",
+    "prebuild:ios": "yarn xcode:quit && ROCKETSIM=true npx expo prebuild -p ios --clean"
+  },
+  "dependencies": {
+    "expo": "~53.0.17",
+    "expo-audio": "0.4.8",
+    "expo-dev-client": "^5.2.4",
+    "expo-status-bar": "~2.2.3",
+    "react": "19.0.0",
+    "react-native": "0.79.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.0.10",
+    "typescript": "~5.8.3"
+  },
+  "private": true,
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+}
