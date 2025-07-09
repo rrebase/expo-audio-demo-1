@@ -1,6 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { View, StyleSheet, Button, Alert } from "react-native";
-import { useAudioRecorder, AudioModule, RecordingPresets } from "expo-audio";
+import {
+  useAudioRecorder,
+  AudioModule,
+  RecordingPresets,
+  setAudioModeAsync,
+} from "expo-audio";
+
+setAudioModeAsync({
+  allowsRecording: true,
+  shouldPlayInBackground: true,
+});
 
 export default function App() {
   const audioRecorder = useAudioRecorder({
