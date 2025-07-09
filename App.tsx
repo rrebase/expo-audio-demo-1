@@ -9,8 +9,8 @@ import {
 } from "expo-audio";
 
 setAudioModeAsync({
+  playsInSilentMode: true,
   allowsRecording: true,
-  shouldPlayInBackground: true,
 });
 
 export default function App() {
