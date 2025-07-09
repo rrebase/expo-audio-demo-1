@@ -1,7 +1,7 @@
-# Repro for expo-audio issue in v0.4.8
+# Repro for expo-audio issue
 
 To run the app:
 
 ```
-bun install && bun ios
+bun install && bun prebuild:ios && bun ios --device
 ```

@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { View, StyleSheet, Button, Alert } from "react-native";
 import {
   useAudioRecorder,
   AudioModule,
   RecordingPresets,
   setAudioModeAsync,
+  useAudioRecorderState,
 } from "expo-audio";
 
 setAudioModeAsync({
@@ -17,28 +18,20 @@ export default function App() {
     ...RecordingPresets.HIGH_QUALITY,
     isMeteringEnabled: true,
   });
-
-  const [isRecording, setIsRecording] = useState(false);
-
-  const intervalRef = useRef<any>(null);
+  const state = useAudioRecorderState(audioRecorder);
 
   const record = async () => {
-    await audioRecorder.prepareToRecordAsync();
+    await audioRecorder.prepareToRecordAsync({
+      isMeteringEnabled: true,
+    });
     audioRecorder.record();
-
-    intervalRef.current = setInterval(() => {
-      console.log("status", JSON.stringify(audioRecorder.getStatus(), null, 2));
-    }, 250);
-
-    setIsRecording(true);
   };
 
+  console.log("state", state);
+
   const stopRecording = async () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
     await audioRecorder.stop();
-    console.log("audioRecorder", audioRecorder.uri);
-    setIsRecording(false);
+    console.log("audioRecorder.uri", audioRecorder.uri);
   };
 
   useEffect(() => {
@@ -53,8 +46,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Button
-        title={isRecording ? "Stop Recording" : "Start Recording"}
-        onPress={isRecording ? stopRecording : record}
+        title={state.isRecording ? "Stop Recording" : "Start Recording"}
+        onPress={state.isRecording ? stopRecording : record}
       />
     </View>
   );

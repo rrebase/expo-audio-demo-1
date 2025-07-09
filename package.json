@@ -8,7 +8,7 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "xcode:quit": "osascript -e 'tell application \"Xcode\" to quit'",
-    "prebuild:ios": "yarn xcode:quit && ROCKETSIM=true npx expo prebuild -p ios --clean"
+    "prebuild:ios": "yarn xcode:quit && npx expo prebuild -p ios --clean"
   },
   "dependencies": {
     "expo": "~53.0.17",

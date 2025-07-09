@@ -1,0 +1,50 @@
+import { ExpoConfig } from "@expo/config";
+
+const appConfig: () => ExpoConfig = () => {
+  return {
+    name: "audio-playground",
+    slug: "audio-playground",
+    version: "1.0.0",
+    orientation: "portrait",
+    icon: "./assets/icon.png",
+    userInterfaceStyle: "light",
+    newArchEnabled: true,
+    splash: {
+      image: "./assets/splash-icon.png",
+      resizeMode: "contain",
+      backgroundColor: "#ffffff",
+    },
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: "com.example.rr-audio-playground",
+      infoPlist: {
+        UIBackgroundModes: ["audio"],
+      },
+    },
+    android: {
+      adaptiveIcon: {
+        foregroundImage: "./assets/adaptive-icon.png",
+        backgroundColor: "#ffffff",
+      },
+      edgeToEdgeEnabled: true,
+      permissions: [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+      ],
+    },
+    web: {
+      favicon: "./assets/favicon.png",
+    },
+    plugins: [
+      [
+        "expo-audio",
+        {
+          microphonePermission:
+            "Allow $(PRODUCT_NAME) to access your microphone.",
+        },
+      ],
+    ],
+  };
+};
+
+export default appConfig;
